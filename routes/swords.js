@@ -5,17 +5,17 @@ var Swords = db.get('swords');
 
 
 router.get('/', function (req, res) {
-  res.status(200).json({message: 'rawr! it is working!'});
+  res.status(200).json({message: 'rawr! it is working!'})
 });
 
 /* Create a New Sword */
 router.post('/', function(req, res) {
   Swords.insert(req.body, function(err, sword) {
     if (err) {
-      res.send(err);
+      res.send(err)
     }
     res.status(201).json(sword)
-  });
+  })
 });
 
 
@@ -35,7 +35,7 @@ router.put('/:id', function (req, res) {
     if (err) {
       throw err
     }
-    res.json(req.body)
+    res.json(sword)
   })
 });
 
