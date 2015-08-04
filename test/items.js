@@ -30,7 +30,7 @@ describe('POST api/swords', function () {
 });
 
 describe('PUT /api/swords/:id', function () {
-  it('updates a resource', function (done) {
+  it('updates a sword', function (done) {
     request(app)
       .put('/api/swords/55c050595ae876b6b79ad318')
       .send({title: 'from test'})
@@ -47,7 +47,7 @@ describe('PUT /api/swords/:id', function () {
 });
 
 describe('GET /api/swords/:id', function () {
-  it ('gets one resource', function (done) {
+  it ('gets one sword', function (done) {
     request(app)
     .get('/api/swords/55c050595ae876b6b79ad318')
     .expect(200)
@@ -60,4 +60,37 @@ describe('GET /api/swords/:id', function () {
       }
     })
   })
-})
+});
+
+
+describe('DELETE /api/swords/:id', function () {
+  it ('deletes one sword', function (done) {
+    request(app)
+    .delete('/api/swords/55c050595ae876b6b79ad318')
+    .expect(200)
+    .end(function(err, res) {
+      if (err) {
+        throw err;
+      } else {
+        assert.equal(res.body.title)
+        done()
+      }
+    })
+  })
+});
+
+describe('GET /api/swords/', function () {
+  it ('gets the swords index page', function (done) {
+    request(app)
+    .get('/api/swords/')
+    .expect(200)
+    .end(function(err, res) {
+      if (err) {
+        throw err;
+      } else {
+        assert.equal()
+        done()
+      }
+    })
+  })
+});
