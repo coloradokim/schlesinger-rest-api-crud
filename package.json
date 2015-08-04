@@ -12,5 +12,8 @@
     "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "monk": "^1.0.1"
+  },
+  "devDependencies": {
+    "supertest": "^1.0.1"
   }
 }
