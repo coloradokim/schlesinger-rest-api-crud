@@ -1,5 +1,5 @@
 var app = require('./../app.js');
-var db = require('monk')('localhost/mochaTest');
+var db = require('monk')('localhost/swords');
 var items = db.get('items');
 var assert = require('assert');
 var request = require('supertest');
@@ -28,3 +28,36 @@ describe('POST api/swords', function () {
       })
   })
 });
+
+describe('PUT /api/swords/:id', function () {
+  it('updates a resource', function (done) {
+    request(app)
+      .put('/api/swords/55c050595ae876b6b79ad318')
+      .send({title: 'from test'})
+      .expect(200)
+      .end(function(err, res) {
+        if (err) {
+          throw err;
+        } else {
+          assert.equal(res.body)
+          done()
+        }
+      })
+  })
+});
+
+describe('GET /api/swords/:id', function () {
+  it ('gets one resource', function (done) {
+    request(app)
+    .get('/api/swords/55c050595ae876b6b79ad318')
+    .expect(200)
+    .end(function(err, res) {
+      if (err) {
+        throw err;
+      } else {
+        assert.equal(res.body)
+        done()
+      }
+    })
+  })
+})
