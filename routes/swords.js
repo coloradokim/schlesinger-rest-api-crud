@@ -35,7 +35,7 @@ router.put('/:id', function (req, res) {
     if (err) {
       throw err
     }
-    res.status(200).json(sword)
+    res.status(200).json(req.body)
   })
 });
 
@@ -45,7 +45,7 @@ router.delete('/:id', function (req, res) {
     if (err) {
       res.send(err)
     }
-    res.status(200).json(sword)
+    res.status(200).json(req.body)
   })
 });
 

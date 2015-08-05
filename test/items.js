@@ -39,43 +39,10 @@ describe('PUT /api/swords/:id', function () {
         if (err) {
           throw err;
         } else {
-          assert.equal(res.body)
+          assert.equal(res.body.title, 'from test')
           done()
         }
       })
-  })
-});
-
-describe('GET /api/swords/:id', function () {
-  it ('gets one sword', function (done) {
-    request(app)
-    .get('/api/swords/55c050595ae876b6b79ad318')
-    .expect(200)
-    .end(function(err, res) {
-      if (err) {
-        throw err;
-      } else {
-        assert.equal(res.body)
-        done()
-      }
-    })
-  })
-});
-
-
-describe('DELETE /api/swords/:id', function () {
-  it ('deletes one sword', function (done) {
-    request(app)
-    .delete('/api/swords/55c050595ae876b6b79ad318')
-    .expect(200)
-    .end(function(err, res) {
-      if (err) {
-        throw err;
-      } else {
-        assert.equal(res.body.title)
-        done()
-      }
-    })
   })
 });
 
@@ -88,7 +55,49 @@ describe('GET /api/swords/', function () {
       if (err) {
         throw err;
       } else {
-        assert.equal()
+        assert.equal(res.body.message, 'rawr! it is working!')
+        done()
+      }
+    })
+  })
+});
+
+describe('DELETE /api/swords/:id', function () {
+  it ('deletes one sword', function (done) {
+    request(app)
+    .delete('/api/swords/55c050595ae876b6b79ad318')
+    .send({title: 'from test'})
+    .expect(200)
+    .end(function(err, res) {
+      if (err) {
+        throw err;
+      } else {
+        assert.equal(res.body.title, 'from test' )
+        done()
+      }
+    })
+  })
+});
+
+//Tests of Spell Routes
+before(function(done){
+  items.remove({}, function() {
+    items.insert({Spell: 'Double Trouble', Author: 'WS'}, function () {
+      done()
+    })
+  })
+});
+
+describe('GET /api/spells/', function () {
+  it ('gets the spells index page', function (done) {
+    request(app)
+    .get('/api/spells')
+    .expect(200)
+    .end(function(err, res) {
+      if (err) {
+        throw err;
+      } else {
+        assert.equal(res.body.message, 'spells page is working')
         done()
       }
     })
